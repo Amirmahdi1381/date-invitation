@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Café ideas</title>
+
+  <style>
+    :root{
+      --card-bg: rgba(255,255,255,.10);
+      --card-brd: rgba(255,255,255,.18);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --shadow: 0 20px 60px rgba(0,0,0,.35);
+      --radius: 22px;
+    }
+
+    body{
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      color: var(--text);
+      background:
+      radial-gradient(900px 420px at 18% 12%, rgba(0,145,255,.30), transparent 60%),
+      radial-gradient(820px 420px at 82% 18%, rgba(160,80,255,.26), transparent 60%),
+      radial-gradient(900px 520px at 50% 92%, rgba(90,200,255,.12), transparent 60%),
+      radial-gradient(700px 380px at 55% 35%, rgba(130,90,255,.14), transparent 60%),
+      #070b18;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+
+    .wrap{
+      width: min(980px, 100%);
+      margin: 0 auto;
+    }
+
+    .top{
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+.title{
+  background: rgba(255,255,255,.06) !important;
+  border: 1px solid rgba(255,255,255,.12) !important;
+  box-shadow: 0 14px 40px rgba(0,0,0,.28) !important;
+  padding: 14px 18px !important;
+  border-radius: 20px !important;
+  display: inline-block;
+}
+
+    .subtitle{
+      margin: 8px 0 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .pill{
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.14);
+      color: var(--muted);
+      font-size: 14px;
+      white-space: nowrap;
+      backdrop-filter: blur(10px);
+    }
+
+    .grid{
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .card{
+      position: relative;
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
+      border: 1px solid var(--card-brd);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transform: translateY(0);
+      transition: transform .25s ease, border-color .25s ease;
+      backdrop-filter: blur(12px);
+    }
+
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background:
+      radial-gradient(520px 220px at 18% 0%, rgba(160,80,255,.32), transparent 60%),
+      radial-gradient(520px 240px at 92% 10%, rgba(0,145,255,.24), transparent 60%);
+      opacity: .45;
+      pointer-events:none;
+    }
+
+    .card:hover{
+      transform: translateY(-6px);
+      border-color: rgba(255,255,255,.28);
+    }
+
+    .inner{
+      position: relative;
+      padding: 16px 16px 14px;
+    }
+
+    .head{
+      display:flex;
+      align-items:flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .name{
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+    }
+
+    .badge{
+      font-size: 13px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.08);
+      color: var(--muted);
+      flex: 0 0 auto;
+    }
+
+    .desc{
+      margin: 0 0 12px;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .chips{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .chip{
+      font-size: 12px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.10);
+      color: rgba(255,255,255,.78);
+    }
+
+    .actions{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      justify-content: space-between;
+    }
+
+    .btn{
+      width: 100%;
+      padding: 12px 14px;
+      border: 0;
+      border-radius: 16px;
+      cursor: pointer;
+      font-weight: 650;
+      letter-spacing: .01em;
+      color: rgba(255,255,255,.95);
+      background: linear-gradient(135deg, rgba(255,105,180,.85), rgba(255,105,180,.35));
+      box-shadow: 0 12px 30px rgba(255,105,180,.18);
+      transition: transform .15s ease, filter .15s ease;
+    }
+
+    .btn:hover{ transform: translateY(-1px); filter: brightness(1.05); }
+    .btn:active{ transform: translateY(0px); }
+
+    .ghost{
+      width: auto;
+      padding: 12px 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.07);
+      color: rgba(255,255,255,.85);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .footer{
+      margin-top: 14px;
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .note{
+      opacity: .9;
+    }
+    @media (max-width: 520px){
+  body{ padding: 16px; }
+
+  .top{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .pill{
+    align-self: flex-start;
+  }
+
+  .title{
+    font-size: 28px;
+    line-height: 1.15;
+    max-width: 100%;
+  }
+
+  .grid{
+    grid-template-columns: 1fr;
+  }
+
+  .card{
+    border-radius: 18px;
+  }
+
+  .inner{
+    padding: 14px;
+  }
+
+  .btn, .ghost{
+    width: 100%;
+  }
+
+  .footer{
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <h1 class="title">Pick a cozy café for our first meet 🩵</h1>
+        <p class="subtitle">Choose one </p>
+      </div>
+      <div class="pill">3 options ✨</div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="inner">
+          <div class="head">
+            <h2 class="name">Barman</h2>
+            <span class="badge">Calm</span>
+          </div>
+          <p class="desc">Quiet vibe, comfy seats, perfect for talking without noise.</p>
+          <div class="actions">
+            <button class="btn choose" data-cafe="Barman">Choose this one</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="inner">
+          <div class="head">
+            <h2 class="name">Black Box</h2>
+            <span class="badge">Cute</span>
+          </div>
+          <p class="desc">A cute brunch place with desserts that look too pretty to eat.</p>
+          <div class="actions">
+            <button class="btn choose" data-cafe="Black Box">Choose this one</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="inner">
+          <div class="head">
+            <h2 class="name">Inkhane</h2>
+            <span class="badge">Cozy</span>
+          </div>
+          <p class="desc">Small, warm, and friendly — feels like a hidden spot.</p>
+          <div class="actions">
+            <button class="btn choose" data-cafe="Inkhane">Choose this one</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="note">If you prefer something else, just tell me — I’ll follow your vibe 🙂</div>
+      <button class="ghost" onclick="history.back()">← Back</button>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll(".choose").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const cafe = btn.dataset.cafe;
+
+        alert(`Perfect🩵 \n${cafe}\n\nWhen are you free this week?`);
+
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>First Meet?</title>
+  <script src="script.js" defer></script>
+
+  <style>
+    :root{
+      --card-bg: rgba(255,255,255,.10);
+      --card-brd: rgba(255,255,255,.18);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.72);
+      --shadow: 0 20px 60px rgba(0,0,0,.35);
+      --radius: 24px;
+    }
+
+    *{ box-sizing: border-box; }
+
+    body{
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      color: var(--text);
+      background:
+      radial-gradient(900px 420px at 18% 12%, rgba(0,145,255,.30), transparent 60%),
+      radial-gradient(820px 420px at 82% 18%, rgba(160,80,255,.26), transparent 60%),
+      radial-gradient(900px 520px at 50% 92%, rgba(90,200,255,.12), transparent 60%),
+      radial-gradient(700px 380px at 55% 35%, rgba(130,90,255,.14), transparent 60%),
+      #070b18;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .wrap{
+      width: min(980px, 100%);
+      margin: 0 auto;
+      display: grid;
+      gap: 18px;
+    }
+
+    .top{
+      display:flex;
+      align-items:flex-end;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+.pill{
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.14);
+  color: var(--muted);
+  font-size: 14px;
+  white-space: nowrap;
+  backdrop-filter: blur(10px);
+}
+
+h1{
+  background: rgba(255,255,255,.05) !important;
+  border: 1px solid rgba(255,255,255,.10) !important;
+  color: rgba(255,255,255,.95) !important;
+
+  padding: 16px 20px !important;
+  border-radius: 20px !important;
+  box-shadow: 0 14px 40px rgba(0,0,0,.28) !important;
+
+  margin: 0;             
+  max-width: 100%;        
+}
+
+    .subtitle{
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .card{
+      position: relative;
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
+      border: 1px solid var(--card-brd);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      backdrop-filter: blur(12px);
+    }
+
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background:
+        radial-gradient(520px 220px at 18% 0%, rgba(255,105,180,.38), transparent 60%),
+        radial-gradient(520px 240px at 92% 10%, rgba(120,120,255,.22), transparent 60%);
+      opacity: .5;
+      pointer-events:none;
+    }
+
+    .inner{
+      position: relative;
+      padding: 18px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .hero{
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 16px;
+      align-items: center;
+    }
+
+    @media (max-width: 720px){
+      .hero{ grid-template-columns: 1fr; }
+      .top{ align-items: center; }
+    }
+
+    .big-emoji{
+      display:grid;
+      place-items:center;
+      border-radius: 22px;
+      min-height: 160px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      font-size: 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .big-emoji::after{
+      content:"";
+      position:absolute;
+      inset:-40px;
+      background: radial-gradient(260px 120px at 20% 20%, rgba(255,105,180,.35), transparent 60%);
+      opacity:.7;
+    }
+
+    .chips{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .chip{
+      font-size: 12px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.10);
+      color: rgba(255,255,255,.78);
+      user-select: none;
+    }
+
+    .btns{
+      display:flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 6px;
+
+      min-height: 56px;
+    }
+
+    button{
+      font-family: inherit;
+    }
+
+    .btn{
+      padding: 12px 16px;
+      border-radius: 16px;
+      border: 0;
+      cursor: pointer;
+      font-weight: 700;
+      letter-spacing: .01em;
+      transition: transform .15s ease, filter .15s ease;
+    }
+#yessir{
+  color: rgba(255,255,255,.95);
+  background: linear-gradient(135deg, rgba(0,145,255,.92), rgba(0,145,255,.35));
+  box-shadow: 0 12px 30px rgba(0,145,255,.20);
+  min-width: 160px;
+}
+#yessir:hover{ transform: translateY(-1px); filter: brightness(1.07); }
+#yessir:active{ transform: translateY(0px); }
+
+    #nooo{
+      color: rgba(255,255,255,.88);
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.16);
+      min-width: 120px;
+    }
+
+    .credit{
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+    @media (max-width: 520px){
+  body{ padding: 16px; }
+
+  .top{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .pill{
+    align-self: flex-start;
+  }
+
+  h1{
+    font-size: 30px;
+    line-height: 1.15;
+  }
+
+  .btns{
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #nooo, #yessir{
+    width: 100%;
+    min-width: 0;
+  }
+
+  .big-emoji{
+    min-height: 120px;
+    font-size: 54px;
+  }
+}
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <h1>Hey sana What do you think about meeting each other for the first time?</h1>
+        <p class="subtitle">No pressure — just a cozy coffee and a good conversation 😊</p>
+      </div>
+      <div class="pill">a tiny question ✨</div>
+    </div>
+
+    <div class="card">
+      <div class="inner">
+        <div class="hero">
+          <div>
+            <div class="chips">
+              <span class="chip">☕ coffee</span>
+              <span class="chip">🗣️ talk</span>
+            </div>
+            <p class="subtitle" style="margin-top:12px;">
+              If you say yes, I’ll show you a few cute café ideas — you pick the one you like💚.
+            </p>
+
+            <div class="btns">
+              <button id="nooo" class="btn">No</button>
+              <button id="yessir" class="btn">Yes!</button>
+            </div>
+          </div>
+
+          <div class="big-emoji" aria-hidden="true">🥐☕</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="credit">made with Amirmahdi</p>
+  </div>
+</body>
+</html>
